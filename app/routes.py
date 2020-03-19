@@ -10,3 +10,8 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     return request.form
+
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
