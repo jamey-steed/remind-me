@@ -1,11 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>RemindMe.io</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link href="{{url_for('static', filename='startbootstrap-coming-soon-gh-pages/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="{{url_for('static', filename='startbootstrap-coming-soon-gh-pages/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="{{url_for('static', filename='startbootstrap-coming-soon-gh-pages/css/coming-soon.min.css')}}" rel="stylesheet">
+
 </head>
+
 <body>
+
+<div class="overlay">
+    <div style="margin-left: 66%; margin-top: 5%; color: black"><h2>Your reminders</h2>
+        <div>
+            <table style="width: 50%">
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Age</th>
+                </tr>
+                <tr>
+                    <td>Jill</td>
+                    <td>Smith</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>Eve</td>
+                    <td>Jackson</td>
+                    <td>94</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+    <source src="{{url_for('static', filename='startbootstrap-coming-soon-gh-pages/mp4/bg.mp4')}}" type="video/mp4">
+</video>
+
+<div class="masthead">
+    <div class="masthead-bg"></div>
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 my-auto">
+          <div class="masthead-content text-white py-5 py-md-0">
+            <h1 class="mb-3">RemindMe.io</h1>
+            <form id="my_method_of_contact" method="post" action="/submit">
+    <fieldset>
+        <legend>How would you like to receive your reminder?</legend>
+        <div id="error" style="display: none">
+            <strong>**You must choose at least one method to receive your reminder**</strong>
+        </div>
+        <input type="checkbox" name="email" value="1">Email<br>
+        <input type="checkbox" name="sms" value="1">Text Message<br>
+        <input type="checkbox" name="call" value="1">Phone Call<br>
+        <br>
+        <label for="reminder">Enter a reminder: </label>
+        <input style="width: 350px" type="text" name="reminder" id="reminder" maxlength="140" required placeholder="Get toilet paper before the hoarders buy it all">
+        <div style="margin-top: 20px">
+            <label for="selector">How often would you like to get this reminder?</label>
+            <select name="selector" id="selector" form="my_method_of_contact">
+                <option value="one_time">Only once</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option> </op>
+            </select>
+        </div>
+        <input id="submit" type="submit" value="Submit">
+    </fieldset>
+</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{url_for('static', filename='startbootstrap-coming-soon-gh-pages/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='startbootstrap-coming-soon-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{{url_for('static', filename='startbootstrap-coming-soon-gh-pages/js/coming-soon.min.js')}}"></script>
+
+</body>
+
+</html>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -26,22 +110,4 @@
         });
     });
 </script>
-
-<h1>Remind Me</h1>
-<form id="my_method_of_contact" method="post" action="/submit">
-    <fieldset>
-        <legend>How would you like to receive your reminder?</legend>
-        <div id="error" style="display: none">
-            <strong>**You must choose at least one method to receive your reminder**</strong>
-        </div>
-        <input type="checkbox" name="email" value="1">Email<br>
-        <input type="checkbox" name="sms" value="1">Text Message<br>
-        <input type="checkbox" name="call" value="1">Phone Call<br>
-        <br>
-        <label for="reminder">Enter a reminder: </label>
-        <input style="width: 300px" type="text" name="reminder" id="reminder" maxlength="140" required placeholder="Get toilet paper before the hoarders buy it all">
-        <input id="submit" type="submit" value="Submit">
-    </fieldset>
-</form>
-</body>
 </html>
