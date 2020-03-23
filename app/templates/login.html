@@ -38,19 +38,21 @@
           <div class="masthead-content text-white py-5 py-md-0">
             <h1 class="mb-3">RemindMe.io</h1>
             <p class="mb-5">Please sign in below to get access to the RemindMe.io app!</p>
-            <div class="input-group form-group">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <form action="/submit" method="post">
+              <div class="input-group form-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
 
-              <input type="email" class="form-control" placeholder="email" required>
-            </div>
-            <div class="input-group form-group">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
-
-              <input type="password" class="form-control" placeholder="password" required>
-            </div>
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">Log in</button>
+                <input type="email" id="email" name="email" class="form-control" placeholder="email" required>
               </div>
+              <div class="input-group form-group">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+
+                <input type="password" id="password" name="password" class="form-control" placeholder="password" required>
+              </div>
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit" id="my_submit">Log in</button>
+                </div>
+            </form>
           </div>
           <div class>
             <div class="d-flex justify-content-center links">
