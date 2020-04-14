@@ -7,6 +7,13 @@ verify_ssl = true
 
 [packages]
 flask = "*"
+mysql-connector = "*"
+flask-login = "*"
+flask-wtf = "*"
+flask-bcrypt = "*"
+flask-sqlalchemy = "*"
+mysql-connector-python = "*"
+bcrypt = "*"
 
 [requires]
 python_version = "3.7"

@@ -17,26 +17,26 @@
 <body>
 
 <div class="overlay">
-    <div style="margin-left: 66%; margin-top: 5%; color: black"><h2>Your reminders</h2>
-        <div>
-            <table style="width: 50%">
-                <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Age</th>
-                </tr>
-                <tr>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td>
-                    <td>94</td>
-                </tr>
-            </table>
-        </div>
+    <div style="margin-left: 66%; margin-top: 5%; color: black"><h2>Your reminders</h2></div>
+    <div style="margin-left: 50%; margin-top:5%;">
+        <table style="width: 100%; table-layout: auto">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+            <tr>
+<!--                TODO THIS IS WHERE FOR STATEMENT STARTS-->
+                <td>Get Milk</td>
+                <td>Get milk from the grocery store</td>
+                <td>04/19/2020</td>
+                <td>5:00 pm</td>
+                <td><a href="#">edit</a></td>
+                <td><a href="#">delete</a></td>
+<!--                TODO THIS IS WHERE FOR STATEMENT ENDS-->
+            </tr>
+        </table>
     </div>
 </div>
 <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
@@ -60,18 +60,34 @@
         <input type="checkbox" name="sms" value="1">Text Message<br>
         <input type="checkbox" name="call" value="1">Phone Call<br>
         <br>
-        <label for="reminder">Enter a reminder: </label>
+        <label for="name">What would you like to name this reminder?</label>
+        <div id="error0" style="display: none"><strong>**This cannot be left blank**</strong></div>
+        <input type="text" name="name" id="name" maxlength="20" required placeholder="Toilet paper"><br>
+        <label for="reminder" style="margin-top: 20px">Enter a reminder: </label>
+        <div id="error1" style="display: none">
+            <strong>**This cannot be left blank**</strong>
+        </div>
         <input style="width: 350px" type="text" name="reminder" id="reminder" maxlength="140" required placeholder="Get toilet paper before the hoarders buy it all">
         <div style="margin-top: 20px">
-            <label for="selector">How often would you like to get this reminder?</label>
-            <select name="selector" id="selector" form="my_method_of_contact">
-                <option value="one_time">Only once</option>
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option> </op>
-            </select>
+            <label for="date">On what day would you like to receive your reminder?</label>
+            <div id="error2" style="display: none">
+            <strong>**You must choose a date**</strong>
         </div>
-        <input id="submit" type="submit" value="Submit">
+            <input type="date" name="date" id="date" required>
+            <label for="time">At what time would you like to receive your reminder?</label>
+            <div id="error3" style="display: none">
+                <strong>**You must choose a time**</strong>
+            </div>
+            <input type="time" name="time" id="time" required>
+<!--            <label for="selector">How often would you like to get this reminder?</label>-->
+<!--            <select name="selector" id="selector" form="my_method_of_contact">-->
+<!--                <option value="one_time">Only once</option>-->
+<!--                <option value="daily">Daily</option>-->
+<!--                <option value="weekly">Weekly</option>-->
+<!--                <option value="monthly">Monthly</option> </op>-->
+<!--            </select>-->
+        </div>
+        <input style="margin-top: 20px" id="submit" type="submit" value="Submit">
     </fieldset>
 </form>
           </div>
@@ -93,21 +109,38 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("date")[0].setAttribute('min', today);
         $('#submit').click(function() {
             checked = $("input[type=checkbox]:checked").length;
+            reminder = document.querySelector("#reminder");
+            date = document.querySelector("#date");
+            time = document.querySelector("#time");
+            if(!checked || !reminder || !date || !time) {
 
-            if(!checked) {
-                document.getElementById('error').style = "color: red; display: inline-text; margin-bottom: 10px";
-                return false;
+                if (!checked) {
+                    document.getElementById('error').style = "color: red; display: inline-text; margin-bottom: 10px";
+                }
+
+                if (!reminder) {
+                    document.getElementById('error1').style = "color: red; display: inline-text; margin-bottom: 10px";
+                }
+                if (!date){
+                    document.getElementById("error2").style = "color: red; display: inline-text; margin-bottom: 10px";
+                }
+                if (!time){
+                    document.getElementById("error3").style = "color: red; display: inline-text; margin-bottom: 10px";
+                }
+                return false
             }
         });
-        $("input[type=checkbox]").click(function() {
-            checked = $("input[type=checkbox]:checked").length;
-            if(checked)
-                {
-                document.getElementById('error').style = "display: none"
-            }
-        });
+        // $("input[type=checkbox]").click(function() {
+        //     checked = $("input[type=checkbox]:checked").length;
+        //     if(checked)
+        //         {
+        //         document.getElementById('error').style = "display: none"
+        //     }
+        // });
     });
 </script>
 </html>
